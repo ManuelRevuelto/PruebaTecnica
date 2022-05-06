@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Catalogo } from './catalogo/catalogo';
 import { CatalogoService } from './catalogo/catalogo.service';
 
 @Component({
@@ -11,22 +12,35 @@ import { CatalogoService } from './catalogo/catalogo.service';
 export class AppComponent implements OnInit {
   form!: FormGroup;
   title = 'Laravel Angular 4 App';
+  submitted = false;
 
-  constructor(private catalogo: CatalogoService, private router: Router) {}
+  constructor(public catalogo: CatalogoService, private router: Router) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  get f() {
-    return this.form.controls;
-  }
+  articulo: Catalogo = {
+    nombre: '',
+    descripcion: '',
+  };
 
   submit(){
-    console.log(this.form.value);
-    this.catalogo.create(this.form.value).subscribe(res => {
-         console.log('Bien');
-         this.router.navigateByUrl('catalogo/index');
-    })
+    
+
+    const data = {
+      nombre: this.catalogo.nombre,
+      descripcion: this.catalogo.descripcion
+    };
+
+    this.catalogo.create(data)
+      .subscribe(
+        (response) => {
+          console.log(response);
+          this.submitted = true;
+        },
+        (error) => {
+          console.log(error);
+        });
+
   }
 
 }

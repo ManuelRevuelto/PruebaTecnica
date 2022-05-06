@@ -1,38 +1,30 @@
 <div>
-  <div class="d-flex justify-content-between">
-    <h4>Form person</h4>
-    <a href="#" routerLink="/person/index" class="btn btn-primaryt">Back</a>
+    <div class="submit-form">
+      <div >
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input
+            type="text"
+            class="form-control"
+            id="nombre"
+            required
+            [(ngModel)]="catalogo.nombre"
+            name="title"
+          />
+        </div>
+  
+        <div class="form-group">
+          <label for="descripcion">Descripcion</label>
+          <input
+            class="form-control"
+            id="descripcion"
+            required
+            [(ngModel)]="catalogo.descripcion"
+            name="descripcion"
+          />
+        </div>
+  
+        <button (click)="submit()" class="btn btn-success">Submit</button>
+      </div>
+    </div>
   </div>
-
-  <hr />
-
-  <form [formGroup]="form" (ngSubmit)="submit()">
-    <div class="form-group row">
-      <div class="col-md-6">
-        <label for="title">Nombre:</label>
-        <input
-          formControlName="nombre"
-          id="nombre"
-          type="text"
-          class="form-control"
-        />
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <div class="col-md-6">
-        <label for="email">Descripcion:</label>
-        <input
-          formControlName="email"
-          id="email"
-          type="text"
-          class="form-control"
-        />
-      </div>
-    </div>
-
-    <button class="btn btn-primary" type="submit" [disabled]="!form.valid">
-      Submit
-    </button>
-  </form>
-</div>

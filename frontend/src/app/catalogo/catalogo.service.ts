@@ -10,13 +10,16 @@ import { Catalogo } from './catalogo';
 })
 export class CatalogoService {
 
-  private apiURL = "http://localhost:8000/api/";
-
+  private apiURL = "http://localhost:8000/api/catalogo";
+  
   httpOptions = {
      headers: new HttpHeaders({
        'Content-Type': 'application/json'
      })
   }
+  nombre: any;
+  descripcion: any;
+
 
   constructor(private httpClient: HttpClient) { }
 
