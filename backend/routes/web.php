@@ -14,4 +14,4 @@ use App\Http\Controllers\CatalogoController;
 |
 */
 
-Route::resource('catalogo', CatalogoController::class);
+//Route::resource('catalogo', CatalogoController::class);

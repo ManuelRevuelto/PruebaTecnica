@@ -17,8 +17,7 @@ class CatalogoController extends Controller
     {
         $catalogo = Catalogo::latest()->paginate(5);
   
-        return view('catalogo.index',compact('catalogo'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        return  response($catalogo);
     }
 
     /**
@@ -69,7 +68,7 @@ class CatalogoController extends Controller
      */
     public function edit(Catalogo $catalogo)
     {
-        return view('catalogo.show',compact('catalogo'));
+        return view('catalogo.edit',compact('catalogo'));
     }
 
     /**
@@ -86,9 +85,9 @@ class CatalogoController extends Controller
             'descripcion' => 'required',
         ]);
     
-        $data->update($request->all());
+        $catalogo->update($request->all());
     
-        return redirect()->route('data.index')
+        return redirect()->route('catalogo.index')
             ->with('success','Catalogo cambiado con exito');
     }
 
