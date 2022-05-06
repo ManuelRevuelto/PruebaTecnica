@@ -23,24 +23,19 @@ export class AppComponent implements OnInit {
     descripcion: '',
   };
 
-  submit(){
-    
-
+  submit() {
     const data = {
       nombre: this.catalogo.nombre,
-      descripcion: this.catalogo.descripcion
+      descripcion: this.catalogo.descripcion,
     };
 
-    this.catalogo.create(data)
-      .subscribe(
-        (response) => {
-          console.log(response);
-          this.submitted = true;
-        },
-        (error) => {
-          console.log(error);
-        });
-
+    this.catalogo.create(data).subscribe({
+      next: (v) => {
+        this.submitted = true;
+        console.log(v);
+      },
+      error: (e) => console.error(e),
+      complete: () => console.info('subido'),
+    });
   }
-
 }
