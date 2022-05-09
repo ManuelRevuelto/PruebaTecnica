@@ -103,12 +103,13 @@ class CatalogoController extends Controller
      * @param  \App\Models\Catalogo  $catalogo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Catalogo $catalogo)
+    public function destroy($catalogo)
     {
-        $catalogo->delete();
-    
-        return redirect()->route('catalogo.index')
-            ->with('success','Catalogo borrado');
+        $res = Catalogo::find($catalogo)->delete();
+        return response()->json([
+            'message' => "Successfully deleted",
+            'success' => true
+        ], 200);
     }
 
 }

@@ -9,9 +9,10 @@ import { Catalogo } from './catalogo';
   providedIn: 'root',
 })
 export class CatalogoService {
-  private apiURL = 'http://localhost:8000/api/catalogo';
+  private apiURL = 'http://localhost:8000/api/catalogo/';
   nombre!: string;
   descripcion!: string;
+  id!: number;
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -42,7 +43,7 @@ export class CatalogoService {
       .pipe(catchError(this.errorHandler));
   }
 
-  update(id: string, Catalogo: any): Observable<Catalogo> {
+  update(id: number, Catalogo: any): Observable<Catalogo> {
     return this.httpClient
       .put<Catalogo>(
         this.apiURL + id,
@@ -52,7 +53,7 @@ export class CatalogoService {
       .pipe(catchError(this.errorHandler));
   }
 
-  delete(id: string) {
+  delete(id: number) {
     return this.httpClient
       .delete<Catalogo>(this.apiURL + id, this.httpOptions)
       .pipe(catchError(this.errorHandler));
