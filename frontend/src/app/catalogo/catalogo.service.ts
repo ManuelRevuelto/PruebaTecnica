@@ -43,7 +43,7 @@ export class CatalogoService {
       .pipe(catchError(this.errorHandler));
   }
 
-  update(id: number, Catalogo: any): Observable<Catalogo> {
+  update(id: number, Catalogo: {nombre: string, descripcion: string}): Observable<Catalogo> {
     return this.httpClient
       .put<Catalogo>(
         this.apiURL + id,

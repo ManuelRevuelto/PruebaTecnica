@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
 
   id = 0;
   nombre = '';
-  description = '';
+  descripcion = '';
 
   articulo: Catalogo = {
     id: 0,
@@ -58,16 +58,18 @@ export class AppComponent implements OnInit {
 
   edit(id: number) {
     const data = {
-      nombre: this.catalogo.nombre,
-      descripcion: this.catalogo.descripcion,
+      nombre: this.nombre,
+      descripcion: this.descripcion,
     };
 
     this.catalogo.update(id, data).subscribe({
       next: (v) => {
         this.submitted = true;
-        console.log(v);
+        window.location.reload();
+        console.log(data);
+        console.log(id);
       },
-      error: (e) => console.error(e),
+      error: (e) => console.error(data),
       complete: () => console.info('Articulo editado'),
     });
   }
@@ -75,6 +77,6 @@ export class AppComponent implements OnInit {
   get(catalogo: any) {
     this.id = catalogo.id;
     this.nombre = catalogo.nombre;
-    this.description = catalogo.descripcion;
+    this.descripcion = catalogo.descripcion;
   }
 }

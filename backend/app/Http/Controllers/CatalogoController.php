@@ -86,15 +86,10 @@ class CatalogoController extends Controller
      */
     public function update(Request $request, Catalogo $catalogo)
     {
-        $request->validate([
-            'nombre' => 'required',
-            'descripcion' => 'required',
-        ]);
-    
         $catalogo->update($request->all());
-    
-        return redirect()->route('catalogo.index')
-            ->with('success','Catalogo cambiado con exito');
+        return response()->json([
+            'message' => 'Task updated successful'
+        ], 200);
     }
 
     /**
