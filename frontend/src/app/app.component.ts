@@ -12,6 +12,10 @@ export class AppComponent implements OnInit {
   catalogos: Catalogo[] = [];
   submitted = false;
 
+  id = 0;
+  nombre = '';
+  description = '';
+
   articulo: Catalogo = {
     id: 0,
     nombre: '',
@@ -37,6 +41,7 @@ export class AppComponent implements OnInit {
     this.catalogo.create(data).subscribe({
       next: (v) => {
         this.submitted = true;
+        window.location.reload();
         console.log(v);
       },
       error: (e) => console.error(e),
@@ -47,18 +52,29 @@ export class AppComponent implements OnInit {
   delete(id: number) {
     this.catalogo.delete(id).subscribe((res) => {
       this.catalogos = this.catalogos.filter((item) => item.id !== id);
-      console.log('Person deleted successfully!');
+      console.log('Articulo eliminado');
     });
   }
 
   edit(id: number) {
-    this.catalogo.update(id, this.catalogo).subscribe({
+    const data = {
+      nombre: this.catalogo.nombre,
+      descripcion: this.catalogo.descripcion,
+    };
+
+    this.catalogo.update(id, data).subscribe({
       next: (v) => {
         this.submitted = true;
         console.log(v);
       },
       error: (e) => console.error(e),
-      complete: () => console.info('subido'),
+      complete: () => console.info('Articulo editado'),
     });
+  }
+
+  get(catalogo: any) {
+    this.id = catalogo.id;
+    this.nombre = catalogo.nombre;
+    this.description = catalogo.descripcion;
   }
 }

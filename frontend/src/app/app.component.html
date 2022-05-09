@@ -30,7 +30,7 @@
             <td>{{ catalogo.nombre }}</td>
             <td>{{ catalogo.descripcion }}</td>
             <td>
-              <a href="#editarAticulo" class="edit" data-toggle="modal"
+              <a href="#editarAticulo" class="edit" data-toggle="modal" (click)="get(catalogo)"
                 ><i class="material-icons" data-toggle="tooltip" title="Editar"
                   >&#xE254;</i
                 ></a
@@ -115,7 +115,7 @@
     <div class="modal-content">
       <form>
         <div class="modal-header">
-          <h4 class="modal-title">Edit Employee</h4>
+          <h4 class="modal-title">Editar articulo</h4>
           <button
             type="button"
             class="close"
@@ -133,8 +133,9 @@
               class="form-control"
               id="nombre"
               required
-              [(ngModel)]="catalogo.nombre"
+              [(ngModel)]="nombre"
               name="title"
+              [placeholder]="nombre"
             />
           </div>
 
@@ -144,8 +145,9 @@
               class="form-control"
               id="descripcion"
               required
-              [(ngModel)]="catalogo.descripcion"
+              [(ngModel)]="description"
               name="descripcion"
+              [placeholder]="description"
             />
           </div>
         </div>
@@ -156,7 +158,7 @@
             data-dismiss="modal"
             value="Cancel"
           />
-          <button (click)="edit(catalogo.id)" class="btn btn-success">Guardar</button>
+          <button (click)="edit(id)" class="btn btn-success">Guardar</button>
         </div>
       </form>
     </div>
