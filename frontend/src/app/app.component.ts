@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+
 import { Catalogo } from './catalogo/catalogo';
 import { CatalogoService } from './catalogo/catalogo.service';
 
@@ -10,32 +9,22 @@ import { CatalogoService } from './catalogo/catalogo.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  form!: FormGroup;
-  title = 'Laravel Angular 4 App';
-  submitted = false;
+  catalogos: Catalogo[] = [];
 
-  constructor(public catalogo: CatalogoService, private router: Router) {}
+  constructor(public catalogo: CatalogoService) {}
 
-  ngOnInit(): void {}
-
-  articulo: Catalogo = {
-    nombre: '',
-    descripcion: '',
-  };
-
-  submit() {
-    const data = {
-      nombre: this.catalogo.nombre,
-      descripcion: this.catalogo.descripcion,
-    };
-
-    this.catalogo.create(data).subscribe({
-      next: (v) => {
-        this.submitted = true;
-        console.log(v);
-      },
-      error: (e) => console.error(e),
-      complete: () => console.info('subido'),
+  ngOnInit(): void {
+    this.catalogo.getAll().subscribe((res: Catalogo[]) => {
+      this.catalogos = res;
+      console.log(res);
+      console.log(this.catalogos);
     });
   }
+
+  // deletePerson(id){
+  //   this.personService.delete(id).subscribe(res => {
+  //        this.persons = this.persons.filter(item => item.id !== id);
+  //        console.log('Person deleted successfully!');
+  //   })
+  // }
 }

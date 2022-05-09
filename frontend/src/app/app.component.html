@@ -1,30 +1,52 @@
-<div>
-    <div class="submit-form">
-      <div >
-        <div class="form-group">
-          <label for="title">Title</label>
-          <input
-            type="text"
-            class="form-control"
-            id="nombre"
-            required
-            [(ngModel)]="catalogo.nombre"
-            name="title"
-          />
-        </div>
-  
-        <div class="form-group">
-          <label for="descripcion">Descripcion</label>
-          <input
-            class="form-control"
-            id="descripcion"
-            required
-            [(ngModel)]="catalogo.descripcion"
-            name="descripcion"
-          />
-        </div>
-  
-        <button (click)="submit()" class="btn btn-success">Submit</button>
-      </div>
-    </div>
+<section>
+
+  <div class="d-flex justify-content-between">
+    <h2>Listado de articulos</h2>
+    <!-- <a routerLink="/person/create" class="btn btn-success">Create New Person</a> -->
   </div>
+
+  <br>
+  
+  <table class="table ">
+    <tr>
+      <th>Nombre</th>
+      <th>Descripcion</th>
+    </tr>
+    <tr *ngFor="let catalogo of catalogos">
+      <td>{{ catalogo.nombre }}</td>
+      <td>{{ catalogo.descripcion }}</td>
+      <td>
+        <button type="button" class="btn" >Editar</button>
+        <button type="button" class="btn " >Eliminar</button>
+      </td>
+    </tr>
+  </table>
+</section>
+
+<!-- <div style="text-align: center;">
+  <h2>Sistema de estudiantes</h2>
+  <button type="button" class="btn btn-success" href="/crearArticulo">Crear nuevo articulo</button>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let catalogo of catalogos.index">
+        <td>{{catalogo.id}}</td>
+        <td>{{catalogo.nombre}}</td>
+        <td>{{catalogo.apellido}}</td>
+        <td>
+          <button type="button" class="btn btn-primary" (click)="openEditar(content,item)">Editar</button>
+          <button type="button" class="btn btn-danger" (click)="eliminar(item)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div> -->
+
+<router-outlet></router-outlet>

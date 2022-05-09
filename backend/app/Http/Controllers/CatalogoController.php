@@ -13,11 +13,11 @@ class CatalogoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    //funciona
     public function index()
     {
-        $catalogo = Catalogo::latest()->paginate(5);
-  
-        return  response($catalogo);
+        $data = Catalogo::get();
+        return response()->json($data, 200);
     }
 
     /**
@@ -25,6 +25,8 @@ class CatalogoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    //funciona
     public function create()
     {
         return view('catalogo.create');
@@ -36,6 +38,8 @@ class CatalogoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    //funciona
     public function store(Request $request)
     {
         $request->validate([
@@ -57,7 +61,9 @@ class CatalogoController extends Controller
      */
     public function show(Catalogo $catalogo)
     {
-        return view('catalogo.show',compact('catalogo'));
+        //return view('catalogo.show',compact('catalogo'));
+        $data = Catalogo::get();
+        return response()->json($data, 200);
     }
 
     /**
@@ -104,4 +110,5 @@ class CatalogoController extends Controller
         return redirect()->route('catalogo.index')
             ->with('success','Catalogo borrado');
     }
+
 }

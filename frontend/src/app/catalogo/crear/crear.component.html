@@ -1,0 +1,31 @@
+<p>crear works!</p>
+<div>
+    <div class="submit-form">
+      <div>
+        <div class="form-group">
+          <label for="title">Nombre</label>
+          <input
+            type="text"
+            class="form-control"
+            id="nombre"
+            required
+            [(ngModel)]="catalogo.nombre"
+            name="title"
+          />
+        </div>
+  
+        <div class="form-group">
+          <label for="descripcion">Descripcion</label>
+          <input
+            class="form-control"
+            id="descripcion"
+            required
+            [(ngModel)]="catalogo.descripcion"
+            name="descripcion"
+          />
+        </div>
+  
+        <button (click)="submit()" class="btn btn-success">Subir</button>
+      </div>
+    </div>
+  </div>

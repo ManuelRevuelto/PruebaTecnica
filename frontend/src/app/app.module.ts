@@ -5,17 +5,21 @@ import { HttpClientModule }    from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { CrearComponent } from './catalogo/crear/crear.component';
+import { MatTableModule } from '@angular/material/table' 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CrearComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
