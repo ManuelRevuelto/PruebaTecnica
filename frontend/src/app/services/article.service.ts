@@ -3,16 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { catchError } from 'rxjs/internal/operators/catchError';
-import { Catalogo } from './catalogo';
+import { Article } from 'src/app/models/article';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CatalogoService {
-  private apiURL = 'http://localhost:8000/api/catalogo/';
-  nombre!: string;
-  descripcion!: string;
-  id!: number;
+export class ArticleService {
+  private apiURL = 'http://localhost:8000/api/articles/';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -22,40 +19,36 @@ export class CatalogoService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getAll(): Observable<Catalogo[]> {
+  getAll(): Observable<Article[]> {
     return this.httpClient
-      .get<Catalogo[]>(this.apiURL)
+      .get<Article[]>(this.apiURL)
       .pipe(catchError(this.errorHandler));
   }
 
-  create(Catalogo: {
-    nombre: string;
-    descripcion: string;
-  }): Observable<Catalogo> {
+  create(Article:Article): Observable<Article> {
     return this.httpClient
-      .post<Catalogo>(this.apiURL, JSON.stringify(Catalogo), this.httpOptions)
+      .post<Article>(this.apiURL, JSON.stringify(Article), this.httpOptions)
       .pipe(catchError(this.errorHandler));
   }
 
-  find(id: number): Observable<Catalogo> {
+  find(id: number): Observable<Article> {
     return this.httpClient
-      .get<Catalogo>(this.apiURL + id)
+      .get<Article>(this.apiURL + id)
       .pipe(catchError(this.errorHandler));
   }
 
-  update(id: number, Catalogo: {nombre: string, descripcion: string}): Observable<Catalogo> {
+  update(id: number, article: Article): Observable<Article> {
     return this.httpClient
-      .put<Catalogo>(
+      .put<Article>(
         this.apiURL + id,
-        JSON.stringify(Catalogo),
-        this.httpOptions
+        article
       )
       .pipe(catchError(this.errorHandler));
   }
 
   delete(id: number) {
     return this.httpClient
-      .delete<Catalogo>(this.apiURL + id, this.httpOptions)
+      .delete<Article>(this.apiURL + id, this.httpOptions)
       .pipe(catchError(this.errorHandler));
   }
 

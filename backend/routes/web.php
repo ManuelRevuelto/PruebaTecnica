@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CatalogoController;
+use App\Http\Controllers\ArticleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,4 +14,4 @@ use App\Http\Controllers\CatalogoController;
 |
 */
 
-//Route::resource('catalogo', CatalogoController::class);
+//Route::resource('article', ArticleController::class);
