@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { Catalogo } from './catalogo/catalogo';
-import { CatalogoService } from './catalogo/catalogo.service';
+import { Article } from './models/article';
+import { ArticleService } from './services/article.service';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { EditComponent } from './article/edit/edit.component';
 
 @Component({
   selector: 'app-root',
@@ -9,74 +12,46 @@ import { CatalogoService } from './catalogo/catalogo.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  catalogos: Catalogo[] = [];
+  displayedColumns: string[] = [
+    'code',
+    'description',
+    'stock',
+    'price',
+    'actions',
+  ];
+  articles: Article[] = [];
   submitted = false;
 
-  id = 0;
-  nombre = '';
-  descripcion = '';
+  title = '';
 
-  articulo: Catalogo = {
-    id: 0,
-    nombre: '',
-    descripcion: '',
-  };
-
-  constructor(public catalogo: CatalogoService) {}
+  constructor(public articleService: ArticleService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.catalogo.getAll().subscribe((res: Catalogo[]) => {
-      this.catalogos = res;
+    this.articleService.getAll().subscribe((res: Article[]) => {
+      this.articles = res;
       console.log(res);
-      console.log(this.catalogos);
-    });
-  }
-
-  submit() {
-    const data = {
-      nombre: this.catalogo.nombre,
-      descripcion: this.catalogo.descripcion,
-    };
-
-    this.catalogo.create(data).subscribe({
-      next: (v) => {
-        this.submitted = true;
-        window.location.reload();
-        console.log(v);
-      },
-      error: (e) => console.error(e),
-      complete: () => console.info('subido'),
+      console.log(this.articles);
     });
   }
 
   delete(id: number) {
-    this.catalogo.delete(id).subscribe((res) => {
-      this.catalogos = this.catalogos.filter((item) => item.id !== id);
+    this.articleService.delete(id).subscribe((res) => {
+      this.articles = this.articles.filter((item) => item.id !== id);
       console.log('Articulo eliminado');
     });
   }
 
   edit(id: number) {
-    const data = {
-      nombre: this.nombre,
-      descripcion: this.descripcion,
-    };
+    const dialogRef = this.dialog.open(EditComponent, {
+      width: '250px',
+      data: { id },
+    });
 
-    this.catalogo.update(id, data).subscribe({
-      next: (v) => {
-        this.submitted = true;
-        window.location.reload();
-        console.log(data);
-        console.log(id);
-      },
-      error: (e) => console.error(data),
-      complete: () => console.info('Articulo editado'),
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
     });
   }
-
-  get(catalogo: any) {
-    this.id = catalogo.id;
-    this.nombre = catalogo.nombre;
-    this.descripcion = catalogo.descripcion;
+  create(){
+    
   }
 }
