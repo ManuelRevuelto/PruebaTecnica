@@ -1,8 +1,10 @@
 <div class="container">
-  <h1>Listado de articulos</h1>
-  <button mat-raised-button color="primary">Crear</button>
+  <mat-toolbar>
+    <h1>Listado de articulos</h1>
+    <span class="example-spacer"></span>
+    <button mat-raised-button color="primary">Crear articulo</button>
+  </mat-toolbar>
   <table mat-table [dataSource]="articles" class="mat-elevation-z8">
-
     <!-- Code Column -->
     <ng-container matColumnDef="code">
       <th mat-header-cell *matHeaderCellDef>Codigo</th>
