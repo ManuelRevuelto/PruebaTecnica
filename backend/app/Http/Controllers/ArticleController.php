@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreArticleRequest;
 use App\Models\Article;
-use Exception;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -31,12 +31,8 @@ class ArticleController extends Controller
     //funciona
     public function store(Request $request, Article $article)
     {
-        $data['cod_article'] = $request['cod_article'];
-        $data['description'] = $request['description'];
-        $data['stock'] = $request['stock'];
-        $data['price'] = $request['price'];
         try{
-            $article::create($data);
+            $article::create($request->all());
             return response()->json([
                 'message' => 'Task updated successful'
             ], 200);
@@ -67,10 +63,14 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        $article->update($request->all());
-        return response()->json([
-            'message' => 'Task updated successful'
-        ], 200);
+        try {
+            $article->update($request->all());
+            return response()->json([
+                'message' => 'Task updated successful'
+            ], 200);
+        } catch (\Illuminate\Database\QueryException $ex) {
+            return response('Error dato repetido', 409);
+        }
     }
 
     /**

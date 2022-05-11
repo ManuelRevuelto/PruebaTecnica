@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ArticleService } from 'src/app/services/article.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit',
@@ -35,10 +36,23 @@ export class EditComponent implements OnInit {
   }
 
   update(): void {
-    this.articleService.update(this.data.id, this.form.value).subscribe((result) => {
-      console.log('Editado');
-      this.dialogRef.close();
-      location.reload();
+    this.articleService.update(this.data.id, this.form.value).subscribe({
+      next: (v) => {
+        console.log('Editado');
+        console.log(v);
+        this.dialogRef.close();
+        location.reload();
+      },
+      error: (e) => {
+        console.warn(e);
+        if (e == 409) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Has introducido un codigo repetitido',
+          });
+        }
+      },
     });
     
   }

@@ -57,7 +57,7 @@ export class ArticleService {
     if (error.error instanceof ErrorEvent) {
       errorMessage = error.error.message;
     } else {
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+      errorMessage = error.status
     }
     return throwError(errorMessage);
   }
