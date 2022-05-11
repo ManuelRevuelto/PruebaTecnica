@@ -2,7 +2,7 @@
   <mat-toolbar>
     <h1>Listado de articulos</h1>
     <span class="example-spacer"></span>
-    <button mat-raised-button color="primary">Crear articulo</button>
+    <button mat-raised-button color="primary" (click)="create()">Crear articulo</button>
   </mat-toolbar>
   <table mat-table [dataSource]="articles" class="mat-elevation-z8">
     <!-- Code Column -->
@@ -30,7 +30,7 @@
     </ng-container>
 
     <!-- Actions Column -->
-    <ng-container matColumnDef="actions">
+    <ng-container matColumnDef="actions" style="text-align: right;">
       <th mat-header-cell *matHeaderCellDef>Acciones</th>
       <td mat-cell *matCellDef="let article">
         <mat-icon (click)="edit(article.id)">edit</mat-icon>

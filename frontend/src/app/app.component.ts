@@ -5,6 +5,7 @@ import { Article } from './models/article';
 import { ArticleService } from './services/article.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { EditComponent } from './article/edit/edit.component';
+import { CreateComponent } from './article/create/create.component';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,11 @@ import { EditComponent } from './article/edit/edit.component';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+
+  title = '';
+  submitted = false;
+
+  articles: Article[] = [];
   displayedColumns: string[] = [
     'code',
     'description',
@@ -19,11 +25,7 @@ export class AppComponent implements OnInit {
     'price',
     'actions',
   ];
-  articles: Article[] = [];
-  submitted = false;
-
-  title = '';
-
+  
   constructor(public articleService: ArticleService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
@@ -44,14 +46,21 @@ export class AppComponent implements OnInit {
   edit(id: number) {
     const dialogRef = this.dialog.open(EditComponent, {
       width: '250px',
-      data: { id },
+      data: { id }
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
+      console.log('The pop up was closed');
     });
   }
+
   create(){
-    
+    const dialogRef = this.dialog.open(CreateComponent, {
+      width: '250px',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The pop up was closed');
+    });
   }
 }

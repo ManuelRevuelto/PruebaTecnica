@@ -36,8 +36,9 @@ export class EditComponent implements OnInit {
 
   update(): void {
     this.articleService.update(this.data.id, this.form.value).subscribe((result) => {
-      console.log('Guardado');
+      console.log('Editado');
       this.dialogRef.close();
+      location.reload();
     });
     
   }

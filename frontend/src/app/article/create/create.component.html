@@ -1,1 +1,30 @@
-<p>create works!</p>
+
+
+<h1 mat-dialog-title>Añadir un nuevo articulo</h1>
+
+<div [formGroup]="form">
+  <div mat-dialog-content>
+    <mat-form-field appearance="fill">
+      <mat-label>Codigo</mat-label>
+      <input matInput formControlName="cod_article" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Descripcion</mat-label>
+      <input matInput formControlName="description" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Stock</mat-label>
+      <input matInput formControlName="stock" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Precio</mat-label>
+      <input matInput formControlName="price" />
+    </mat-form-field>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button (click)="onNoClick()" mat-stroked-button color="warn">Cancel</button>
+  <button (click)="create()" mat-stroked-button color="primary">
+    Guardar
+  </button>
+</div>

@@ -29,19 +29,18 @@ class ArticleController extends Controller
      */
 
     //funciona
-    public function store(Request $request)
+    public function store(Request $request, Article $article)
     {
-        $request->validate([
-            'nombre' => 'required',
-            'descripcion' => 'required',
-        ]);
-    
+        $data['cod_article'] = $request['cod_article'];
+        $data['description'] = $request['description'];
+        $data['stock'] = $request['stock'];
+        $data['price'] = $request['price'];
         try{
-            Article::create($request->all());
-            return response("insert ",200);
-          
+            $article::create($data);
+            return response()->json([
+                'message' => 'Task updated successful'
+            ], 200);
         }catch(\Illuminate\Database\QueryException $ex){
-
             return response('Error dato repetido', 409);
         }
     }
