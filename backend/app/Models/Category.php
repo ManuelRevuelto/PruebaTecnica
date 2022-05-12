@@ -13,9 +13,4 @@ class Category extends Model
     {
         return $this->hasMany('App\Models\Subcategory');
     }
-
-    public function articles()
-    {
-        return $this->hasMany('App\Models\Article');
-    }
 }

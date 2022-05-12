@@ -15,4 +15,9 @@ class Article extends Model
         'stock',
         'price'
     ];
+
+    public function subcategories()
+    {
+        return $this->hasMany('App\Models\Subcategory');
+    }
 }

@@ -14,4 +14,9 @@ class Subcategory extends Model
         return $this->belongsTo('App\Models\Category');
     }
 
+    public function aricles()
+    {
+        return $this->belongsTo('App\Models\Aricle');
+    }
+
 }
