@@ -18,5 +18,6 @@
 # Configuration frontend
 * Open another terminal
 * cd frontend
+* npm i
 * ng serve
 * Open the browser and search http://localhost:4200/
