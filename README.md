@@ -3,7 +3,7 @@
 # Installation Guide
 
 * git clone https://github.com/ManuelRevuelto/PruebaTecnica.git
-* 
+
 # Requirements for it to work
 * Open Xampp and start MySql
 * Have installed the latest version of Laravel and Angular
