@@ -6,6 +6,7 @@
 * 
 # Requirements for it to work
 * Open Xampp and start MySql
+* Have installed the latest version of Laravel and Angular
 
 # Configuration backend
 * Open a terminal
