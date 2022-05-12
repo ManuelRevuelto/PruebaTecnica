@@ -9,13 +9,13 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'cod_category', 
-        'description'
-    ];
-
-    public function Subcategory()
+    public function subcategories()
     {
         return $this->hasMany('App\Models\Subcategory');
+    }
+
+    public function articles()
+    {
+        return $this->hasMany('App\Models\Article');
     }
 }

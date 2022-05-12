@@ -9,14 +9,9 @@ class Subcategory extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'cod_subcategory', 
-        'cod_category',
-        'description'
-    ];
-
-    public function Category()
+    public function categories()
     {
         return $this->belongsTo('App\Models\Category');
     }
+
 }
