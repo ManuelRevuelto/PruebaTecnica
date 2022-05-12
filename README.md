@@ -3,14 +3,18 @@
 # Installation Guide
 
 * git clone https://github.com/ManuelRevuelto/PruebaTecnica.git
+* 
+# Requirements for it to work
+* Open Xampp and start MySql
 
-# configuration backend
+# Configuration backend
 * Open a terminal
 * cd backend
+* composer install
 * php artisan migrate
 * php artisan serve
 
-# configuration frontend
+# Configuration frontend
 * Open another terminal
 * cd frontend
 * ng serve
